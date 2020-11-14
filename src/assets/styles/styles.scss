@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&display=swap');
+
+// variables
+$lime: hsl(136, 65%, 51%);
+$cyan: hsl(192, 70%, 51%);
+$blue: hsl(233, 26%, 24%);
+
+$gray-blue: hsl(233, 8%, 62%);
+$light-gray: hsl(220, 16%, 96%);
+$very-light-gray: hsl(0, 0%, 98%);
+$white: hsl(0, 0%, 100%);
+$linear: linear-gradient(to right, $lime 30%, $cyan 70%);
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+// common
+
+* {
+  font-family: 'Public Sans', sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 300;
+}
+
+body {
+  font-size: 18px;
+  background-color: $very-light-gray;
+  min-width: 1440px;
+}
+
+button {
+  color: hsl(0, 0%, 100%);
+  border: none;
+  background: $linear;
+  border-radius: 30px;
+  padding: 10px 20px;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  .overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    &:hover{
+      background-color: $white;
+      opacity: 0.3;
+      transition: 300ms;
+    }
+  }
+  
+}
+
+
+// header (nav)
+header {
+  @include flex-between;
+  padding: 0 80px;
+  align-items: center;
+  background-color: $white;
+
+  .menu {
+    ul {
+      list-style: none;
+      display: flex;
+      box-sizing: border-box;
+      height: 100%;
+      text-align: center;
+      li {
+        cursor: pointer;
+        height: 100%;
+        position: relative;
+        width: 100px;
+        &:hover {
+          color: $gray-blue;
+          &::after {
+            content: ' ';
+            left: 0;
+            bottom: -18px;
+            position: absolute;
+            height: 3px;
+            background: $linear;
+            animation-name: expand;
+            animation-duration: 200ms;
+            animation-fill-mode: forwards;
+          }
+        }
+      }
+    }
+  }
+}
+
+//main body
+main {
+  p {
+    color: $gray-blue;
+  }
+
+  // hero (header) 
+  #hero {
+    padding: 0 80px;
+    height: 795px;
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    h1 {
+      color: $blue;
+      margin-top: 200px;
+    }
+
+    img {
+      position: absolute;
+      &.mockup {
+        right: -130px;
+        top: -130px;
+      }
+      &.background {
+        right: -455px;
+        top: -260px;
+      }
+    }
+  }
+
+  // choose section
+  #choose {
+    padding: 80px;
+    margin-top: -100px;
+    background-color: $light-gray;
+    #feature-list {
+      @include flex-between;
+      div {
+        flex: 0 0 23%;
+        &:not(:last-child) {
+          margin-right: 30px;
+        }
+      }
+    }
+  }
+
+  #articles {
+    padding: 80px;
+    #article-list {
+      @include flex-between;
+      .article {
+        cursor: pointer;
+        border: 1px solid #eeeeee;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px 0px #ccc;
+        overflow: hidden;
+        flex: 0 0 23%;
+        span{
+          color: $gray-blue;
+          font-size: 0.7em;
+        }
+        img {
+          object-fit: cover;
+          height: 200px;
+          width: 100%;
+        }
+        &:not(:last-child) {
+          margin-right: 30px;
+        }
+        h3, p {
+          margin: 10px 0;
+        }
+        .body{
+          padding: 20px;
+
+        }
+      }
+    }
+  }
+}
+
+footer {
+  @include flex-between;
+  background-color: $blue;
+  color: $white;
+  padding: 0 80px;
+  align-items: center;
+  .logo {
+    flex: 0 0 15%;
+    div{
+      svg{
+        margin: 10px 5px;
+        cursor: pointer;
+        path{
+          &:hover{
+            fill: $lime;
+          }
+        }
+       
+      }
+    }
+  }
+  .action {
+    flex: 0 0 55%;
+    text-align: right;
+    p {
+      color: $gray-blue;
+    }
+  }
+  .menu {
+    flex: 0 0 30%;
+    ul {
+      align-items: flex-start;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      height: 100px;
+      justify-content: center;
+      li {
+        margin: 5px 10px;
+        a{
+          color: $white;
+          text-decoration: none;
+          &:hover{
+            color: $lime;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes expand {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100px;
+  }
+}
